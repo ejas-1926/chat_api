@@ -1,7 +1,7 @@
 from fastapi import FastAPI
+from Routers.chat_router import router
+
+app = FastAPI()
 
 
-app = FastAPI(title="TestAPI");
-@app.get("/")
-def root():
-    return {"message": "API is running"}
+app.include_router(router)
