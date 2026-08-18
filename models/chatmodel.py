@@ -5,7 +5,9 @@ from datetime import datetime
 
 class ChatModel(BaseModel):
  
-    chat_id: int
-    recent_chat: str
-    chatusername:str
-    last_active: datetime
+    chat_id: int     #chat id 
+    recent_chat: str #recent message name 
+    chatusername:str #user name 
+    last_active: datetime #time
+
+
