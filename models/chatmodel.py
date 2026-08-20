@@ -1,13 +1,8 @@
-from typing import Optional
-from pydantic import BaseModel, EmailStr, Field
 from uuid import UUID
-from datetime import datetime
+from pydantic import BaseModel
 
 class ChatModel(BaseModel):
- 
-    chat_id: int     #chat id 
-    recent_chat: str #recent message name 
-    chatusername:str #user name 
-    last_active: datetime #time
-
-
+    user_id: UUID | None = None
+    recent_chat: str | None = None
+    chatusername: str | None = None
+    last_seen: str | None = None
