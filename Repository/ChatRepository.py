@@ -1,5 +1,6 @@
 from sqlalchemy import text
 from sqlalchemy.orm import Session
+
 from uuid import UUID
 
 from models.chatmodel import ChatModel
@@ -14,10 +15,13 @@ class ChatRepository:
         query = text("""
             SELECT *
             FROM getuserchats(:user_id)
+
+
         """)
 
         result = db.execute(
             query,
+
             {"user_id": user_id}
         )
 
@@ -39,3 +43,4 @@ class ChatRepository:
             chats.append(model)
 
         return chats
+
