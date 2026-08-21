@@ -26,6 +26,7 @@ class ChatRepository:
         )
 
         rows = result.fetchall()
+        print(type(rows[0].last_seen))
 
         for row in rows:
 
@@ -39,6 +40,9 @@ class ChatRepository:
                     else None
                 )
             )
+            print(f"Row type: {type(row)}")
+            print(f"Row mappings and values: {row._mapping}")  # ← PARENTHESES ADDED HERE
+            #print(f"Row as dictionary: {dict(row)}")
 
             chats.append(model)
 

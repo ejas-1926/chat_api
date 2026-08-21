@@ -19,6 +19,7 @@ chatservice  = ChatService();
 def get_chat(user_id:UUID,db: Session = Depends(get_db)):
     x = chatservice.get_chat(user_id= user_id,db=db)
     print(x)
+    return x
 
 
 
