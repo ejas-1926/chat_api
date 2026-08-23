@@ -8,4 +8,4 @@ class MessageModel(BaseModel):
     content : str |None = None
     message_sent: datetime | None = None
     sender_id: UUID | None = None
-    chat_id:int | None = None
+    display_Name:str | None = "Unknown"

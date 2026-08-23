@@ -32,9 +32,10 @@ class ChatRepository:
 
             model = ChatModel(
                 user_id=row.user_id,
+                chat_id = row.chat_id,
                 recent_chat=row.content,
                 chatusername=row.name,
-                last_seen=(
+                last_active=(
                     row.last_seen.strftime("%Y-%m-%d %H:%M:%S")
                     if row.last_seen is not None
                     else None

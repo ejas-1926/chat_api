@@ -1,9 +1,12 @@
-from uuid import UUID
+from typing import Optional
 from pydantic import BaseModel
+from uuid import UUID
 from datetime import datetime
 
 class ChatModel(BaseModel):
-    user_id: UUID | None = None
-    recent_chat: str | None = None
-    chatusername: str | None = None
-    last_seen: datetime | None = None
+ 
+    chat_id: int
+    recent_chat: str
+    chatusername:str
+    last_active: datetime
+    user_id:UUID

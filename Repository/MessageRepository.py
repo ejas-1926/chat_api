@@ -8,13 +8,13 @@ from models.messagemodel import MessageModel
 
 class MessageRepository:
 
-    def get_messages(self, db: Session, user_id: UUID):
+    def get_messages(self, db: Session, chat_id: int):
 
-        chats: list[MessageModel] = []
+        messages:list[MessageModel] = []
 
         query = text("""
             SELECT *
-            FROM getmessagesfromchat(:user_id)
+            FROM get_chat_messages(:chat_id)
 
 
         """)
@@ -22,7 +22,7 @@ class MessageRepository:
         result = db.execute(
             query,
 
-            {"user_id": user_id}
+            {"chat_id": chat_id}
         )
 
         rows = result.fetchall()
@@ -33,16 +33,18 @@ class MessageRepository:
             model = MessageModel(
                 message_id=row.message_id,
                 sender_id=row.sender_id,
-                chat_id=row.chat_id,
                 content= row.content,
+                display_Name=row.display_name,
+                message_sent=(
+                                    row.created_at.strftime("%Y-%m-%d %H:%M:%S")
+                                    if row.created_at is not None
+                                    else None
+                                )
                
                 
             )
-            print(f"Row type: {type(row)}")
-            print(f"Row mappings and values: {row._mapping}")  # ← PARENTHESES ADDED HERE
-            #print(f"Row as dictionary: {dict(row)}")
-
-            chats.append(model)
-
-        return chats
+            print(model)
+            messages.append(model)
+        print('leaving repository with messages')
+        return messages
 
